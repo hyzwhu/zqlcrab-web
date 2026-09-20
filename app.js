@@ -67,8 +67,20 @@ const COPY = {
     connectP:
       "内置 36 种生态引擎选项，支持一键切换生产只读保护（防止误执行 DROP/DELETE/UPDATE），配置保存在本地。",
     nativeTitle: "为什么不是 Electron",
-    nativeP:
-      "界面由 GPUI 走 GPU，目标 120 FPS，输入按亚毫秒响应。macOS 有原生菜单栏（zqlcrab / File / Edit / View / Window / Help）和完整快捷键。暗色黑曜石与亮色两套主题来自同一套 CrabStudio token。",
+    nativeLede:
+      "拒绝臃肿的 Webview 包装与数百兆的空闲内存占用。zqlcrab 选择 Rust 与 Zed 的 GPUI 引擎，追求极客级性能与纯粹原生质感。",
+    nativeCard1H: "GPU 原生加速渲染",
+    nativeCard1P:
+      "通过 Metal / Vulkan / DirectX 直接与 GPU 对话，稳定保持 120 FPS 高刷新率，数十万行数据滚动丝滑无撕裂。",
+    nativeCard2H: "亚毫秒级输入跟手",
+    nativeCard2P:
+      "消除浏览器 DOM 抽象与多进程消息中转开销。按键直达渲染帧，输入延迟低于 1ms，体验如同本地终端。",
+    nativeCard3H: "极致轻量内存占用",
+    nativeCard3P:
+      "摒弃 Chromium 运行环境与 Node.js 冗余组件，空闲内存仅数十兆，瞬时冷启动无需等待沙盒初始化。",
+    nativeCard4H: "纯正操作系统原生集成",
+    nativeCard4P:
+      "深度遵循平台人机交互，具备原生菜单栏、全局快捷键体系与 CrabStudio 双模主题，专注沉浸而无 Web 感。",
     dlTitle: "下载",
     dlLede: "预编译包在 GitHub Releases。版本号以仓库发布页为准。",
     colOs: "系统",
@@ -155,8 +167,20 @@ const COPY = {
     connectP:
       "Connect across 36 database engine choices with instant read-only guards to protect production workloads.",
     nativeTitle: "Why not Electron",
-    nativeP:
-      "GPUI paints on the GPU toward 120 FPS, with sub-millisecond input. macOS gets a native menu bar (zqlcrab / File / Edit / View / Window / Help) and full shortcuts. Dark obsidian and light share the CrabStudio tokens.",
+    nativeLede:
+      "No bloated webview wrappers or hundreds of megabytes in idle memory. zqlcrab picks Rust and Zed’s GPUI for raw performance and tactile native feel.",
+    nativeCard1H: "GPU-accelerated rendering",
+    nativeCard1P:
+      "Draws directly through Metal, Vulkan, and DirectX to sustain smooth 120 FPS. Scroll through hundreds of thousands of rows without tears.",
+    nativeCard2H: "Sub-millisecond input response",
+    nativeCard2P:
+      "No browser DOM layers or IPC lag. Keystrokes land straight onto the render frame with sub-1ms latency, feeling as immediate as a terminal.",
+    nativeCard3H: "Ultra-lean memory footprint",
+    nativeCard3P:
+      "No embedded Chromium bundle or background Node runtime. Idle usage sits in tens of megabytes, with instantaneous cold starts.",
+    nativeCard4H: "Genuine OS platform integration",
+    nativeCard4P:
+      "Follows human interface guidelines with native menu bars, global shortcut system, and polished CrabStudio dual themes.",
     dlTitle: "Download",
     dlLede: "Prebuilt packages live on GitHub Releases. Trust the tag on that page.",
     colOs: "OS",

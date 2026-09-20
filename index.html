@@ -204,11 +204,39 @@
         </div>
       </section>
 
-      <section class="native">
-        <h2 data-i18n="nativeTitle">为什么不是 Electron</h2>
-        <p data-i18n="nativeP">
-          界面由 GPUI 走 GPU，目标 120 FPS，输入按亚毫秒响应。macOS 有原生菜单栏（zqlcrab / File / Edit / View / Window / Help）和完整快捷键。暗色黑曜石与亮色两套主题来自同一套 CrabStudio token。
-        </p>
+      <section class="native" id="native">
+        <header class="section-head">
+          <h2 data-i18n="nativeTitle">为什么不是 Electron</h2>
+          <p data-i18n="nativeLede">
+            拒绝臃肿的 Webview 包装与数百兆的空闲内存占用。zqlcrab 选择 Rust 与 Zed 的 GPUI 引擎，追求极客级性能与纯粹原生质感。
+          </p>
+        </header>
+
+        <div class="native-grid">
+          <div class="native-card">
+            <div class="native-icon">⚡</div>
+            <h3 data-i18n="nativeCard1H">GPU 原生加速渲染</h3>
+            <p data-i18n="nativeCard1P">通过 Metal / Vulkan / DirectX 直接与 GPU 对话，稳定保持 120 FPS 高刷新率，数十万行数据滚动丝滑无撕裂。</p>
+          </div>
+
+          <div class="native-card">
+            <div class="native-icon">⌨️</div>
+            <h3 data-i18n="nativeCard2H">亚毫秒级输入跟手</h3>
+            <p data-i18n="nativeCard2P">消除浏览器 DOM 抽象与多进程消息中转开销。按键直达渲染帧，输入延迟低于 1ms，体验如同本地终端。</p>
+          </div>
+
+          <div class="native-card">
+            <div class="native-icon">🪶</div>
+            <h3 data-i18n="nativeCard3H">极致轻量内存占用</h3>
+            <p data-i18n="nativeCard3P">摒弃 Chromium 运行环境与 Node.js 冗余组件，空闲内存仅数十兆，瞬时冷启动无需等待沙盒初始化。</p>
+          </div>
+
+          <div class="native-card">
+            <div class="native-icon">🪟</div>
+            <h3 data-i18n="nativeCard4H">纯正操作系统原生集成</h3>
+            <p data-i18n="nativeCard4P">深度遵循平台人机交互，具备原生菜单栏、全局快捷键体系与 CrabStudio 双模主题，专注沉浸而无 Web 感。</p>
+          </div>
+        </div>
       </section>
 
       <section class="download" id="download">
