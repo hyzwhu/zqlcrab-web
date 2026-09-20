@@ -143,10 +143,12 @@ a:hover {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  grid-template-columns: minmax(18rem, 0.82fr) minmax(0, 1.28fr);
   gap: clamp(1.5rem, 4vw, 3.5rem);
   align-items: center;
-  padding: clamp(2.5rem, 7vw, 5.5rem) clamp(1rem, 4vw, 2.5rem) 2.5rem;
+  max-width: 92rem;
+  margin-inline: auto;
+  padding: clamp(2.5rem, 7vw, 5.5rem) clamp(1rem, 4vw, 3.75rem) 3rem;
 }
 
 .hero-copy h1 {
@@ -220,6 +222,84 @@ a:hover {
   color: var(--muted);
   font-size: 0.88rem;
   margin: 0;
+}
+
+.hero-stage {
+  min-width: 0;
+}
+
+.capture-label {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0 0 0.65rem;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.live-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--insert);
+  box-shadow: 0 0 0 4px color-mix(in oklch, var(--insert) 18%, transparent);
+}
+
+.shot-frame {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface-app);
+  color: var(--ink);
+  cursor: zoom-in;
+  text-align: left;
+}
+
+.shot-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px color-mix(in oklch, white 5%, transparent);
+}
+
+.shot-frame:hover {
+  border-color: var(--steel);
+}
+
+.shot-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hero-shot {
+  max-height: none;
+}
+
+.hero-shot img {
+  height: auto;
+}
+
+.zoom-hint {
+  position: absolute;
+  right: 0.7rem;
+  bottom: 0.7rem;
+  padding: 0.28rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: color-mix(in oklch, var(--bg) 82%, transparent);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  backdrop-filter: blur(8px);
 }
 
 .window {
@@ -385,7 +465,9 @@ a:hover {
 .native,
 .download,
 .source {
-  padding: clamp(2.4rem, 6vw, 4.2rem) clamp(1rem, 4vw, 2.5rem) 0;
+  width: min(100%, 92rem);
+  margin-inline: auto;
+  padding: clamp(2.4rem, 6vw, 4.2rem) clamp(1rem, 4vw, 3.75rem) 0;
 }
 
 .section-head h2,
@@ -432,8 +514,48 @@ a:hover {
   color: var(--on-primary);
 }
 
+.real-tour {
+  margin-top: 1.8rem;
+}
+
+.real-tour .tour-tabs {
+  margin-bottom: 0;
+  padding-left: 0.75rem;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.real-tour .tour-tabs button {
+  position: relative;
+  padding: 0.7rem 1rem;
+  border: 0;
+  border-radius: 0;
+}
+
+.real-tour .tour-tabs button[aria-selected="true"] {
+  background: transparent;
+  color: var(--ink);
+}
+
+.real-tour .tour-tabs button[aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  right: 0.8rem;
+  bottom: -1px;
+  left: 0.8rem;
+  height: 2px;
+  background: var(--tide);
+}
+
+.tour-stage {
+  border: 1px solid var(--border);
+  border-top: 0;
+  border-radius: 0 0 12px 12px;
+  background: color-mix(in oklch, var(--surface) 70%, var(--bg));
+}
+
 .panel {
-  padding: 1rem 1.1rem 1.2rem;
+  padding: clamp(1rem, 3vw, 1.8rem);
 }
 
 .panel[hidden] {
@@ -447,6 +569,35 @@ a:hover {
   align-items: start;
 }
 
+.shot-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(15rem, 0.64fr);
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  align-items: start;
+}
+
+.shot-layout .shot-frame {
+  max-height: none;
+}
+
+.shot-layout .shot-frame img {
+  height: auto;
+}
+
+.shot-layout .copy {
+  position: sticky;
+  top: 6rem;
+  padding-top: 0.35rem;
+}
+
+.capture-kicker {
+  margin: 0 0 0.65rem !important;
+  color: var(--tide) !important;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+}
+
 .copy h3 {
   margin: 0 0 0.45rem;
   font-size: 1.05rem;
@@ -455,6 +606,60 @@ a:hover {
 .copy p {
   margin: 0;
   color: var(--muted);
+}
+
+.lightbox {
+  width: min(94vw, 76rem);
+  max-width: none;
+  max-height: 92vh;
+  margin: auto;
+  padding: 0.75rem;
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.lightbox::backdrop {
+  background: color-mix(in oklch, var(--bg) 86%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+.lightbox form {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  height: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.lightbox-close {
+  width: 2.35rem;
+  height: 2.35rem;
+  margin: 0.35rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: color-mix(in oklch, var(--bg) 84%, transparent);
+  color: var(--ink);
+  font: 1.4rem/1 var(--font);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+
+.lightbox img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.lightbox p {
+  margin: 0.65rem 0 0.1rem;
+  color: var(--muted);
+  text-align: center;
+  font-size: 0.88rem;
 }
 
 .grid {
@@ -594,7 +799,8 @@ footer img {
   .hero,
   .engines,
   .window-body,
-  .split {
+  .split,
+  .shot-layout {
     grid-template-columns: 1fr;
   }
 
@@ -618,6 +824,12 @@ footer img {
     width: 100%;
     margin-top: 0.2rem;
   }
+
+  .shot-layout .copy {
+    position: static;
+    max-width: var(--measure);
+    padding-top: 0;
+  }
 }
 
 @media (max-width: 640px) {
@@ -627,6 +839,24 @@ footer img {
 
   .hero {
     padding-top: 1.8rem;
+  }
+
+  .shot-layout .shot-frame {
+    overflow-x: auto;
+  }
+
+  .shot-layout .shot-frame img {
+    min-width: 42rem;
+    height: auto;
+  }
+
+  .real-tour .tour-tabs {
+    padding-left: 0;
+  }
+
+  .real-tour .tour-tabs button {
+    flex: 1;
+    padding-inline: 0.5rem;
   }
 }
 

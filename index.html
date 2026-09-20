@@ -23,7 +23,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -67,34 +67,29 @@
           </p>
         </div>
 
-        <aside class="hero-stage" aria-hidden="true">
-          <div class="window">
-            <div class="titlebar">
-              <span class="dots"></span>
-              <span class="title">zqlcrab — local / public</span>
-              <span class="ping">12 ms</span>
-            </div>
-            <div class="window-body">
-              <div class="sidebar">
-                <p class="side-label">connections</p>
-                <p class="side-item on">▸ postgres://local</p>
-                <p class="side-item">sqlite:///notes.db</p>
-                <p class="side-label">tables</p>
-                <p class="side-item">users</p>
-                <p class="side-item">orders</p>
-                <p class="side-item">sessions</p>
-              </div>
-              <div class="console">
-                <pre><code><span class="kw">SELECT</span> u.id, u.email, <span class="fn">COUNT</span>(o.id) <span class="kw">AS</span> orders
-<span class="kw">FROM</span> users u
-<span class="kw">LEFT JOIN</span> orders o <span class="kw">ON</span> o.user_id = u.id
-<span class="kw">WHERE</span> u.created_at &gt; <span class="fn">now</span>() - <span class="str">interval '7 days'</span>
-<span class="kw">GROUP BY</span> u.id
-<span class="kw">ORDER BY</span> orders <span class="kw">DESC</span>
-<span class="kw">LIMIT</span> <span class="num">50</span>;<span class="caret"></span></code></pre>
-              </div>
-            </div>
+        <aside class="hero-stage">
+          <div class="capture-label">
+            <span class="live-dot" aria-hidden="true"></span>
+            <span data-i18n="captureLabel">完整客户端界面 · 本地数据库</span>
           </div>
+          <button
+            class="shot-frame hero-shot"
+            type="button"
+            data-lightbox="assets/screenshots/zqlcrab-data.jpg"
+            data-caption-key="dataCaption"
+            aria-label="放大查看数据表格截图"
+            data-i18n-aria="zoomData"
+          >
+            <img
+              src="assets/screenshots/zqlcrab-data.jpg"
+              alt="zqlcrab 数据表格完整窗口"
+              width="1152"
+              height="768"
+              fetchpriority="high"
+              data-i18n-alt="dataAlt"
+            />
+            <span class="zoom-hint" data-i18n="zoomHint">点击放大</span>
+          </button>
         </aside>
       </section>
 
@@ -117,91 +112,49 @@
           </p>
         </header>
 
-        <div class="tour">
+        <div class="tour real-tour">
           <div class="tour-tabs" role="tablist" aria-label="Workbench panels">
-            <button type="button" role="tab" id="tab-console" aria-controls="panel-console" aria-selected="true" data-panel="console" data-i18n="tabConsole">SQL 控制台</button>
-            <button type="button" role="tab" id="tab-grid" aria-controls="panel-grid" aria-selected="false" data-panel="grid" data-i18n="tabGrid">数据表格</button>
+            <button type="button" role="tab" id="tab-grid" aria-controls="panel-grid" aria-selected="true" data-panel="grid" data-i18n="tabGrid">数据表格</button>
+            <button type="button" role="tab" id="tab-console" aria-controls="panel-console" aria-selected="false" data-panel="console" data-i18n="tabConsole">SQL 控制台</button>
             <button type="button" role="tab" id="tab-schema" aria-controls="panel-schema" aria-selected="false" data-panel="schema" data-i18n="tabSchema">表结构</button>
-            <button type="button" role="tab" id="tab-history" aria-controls="panel-history" aria-selected="false" data-panel="history" data-i18n="tabHistory">查询历史</button>
           </div>
 
-          <div class="tour-stage window">
-            <div class="titlebar">
-              <span class="dots"></span>
-              <span class="title" id="tour-title">console · postgres://local</span>
-              <span class="ping" data-i18n="safeMode">只读保护可开</span>
-            </div>
-
-            <div class="panel on" id="panel-console" role="tabpanel" aria-labelledby="tab-console">
-              <div class="split">
-                <pre class="sql"><code><span class="kw">EXPLAIN</span> <span class="kw">ANALYZE</span>
-<span class="kw">SELECT</span> * <span class="kw">FROM</span> orders
-<span class="kw">WHERE</span> status = <span class="str">'open'</span>
-<span class="kw">ORDER BY</span> created_at <span class="kw">DESC</span>;</code></pre>
+          <div class="tour-stage">
+            <div class="panel on" id="panel-grid" role="tabpanel" aria-labelledby="tab-grid">
+              <div class="shot-layout">
+                <button class="shot-frame" type="button" data-lightbox="assets/screenshots/zqlcrab-data.jpg" data-caption-key="dataCaption" aria-label="放大查看数据表格截图" data-i18n-aria="zoomData">
+                  <img src="assets/screenshots/zqlcrab-data.jpg" alt="zqlcrab 数据表格完整窗口" width="1152" height="768" loading="lazy" data-i18n-alt="dataAlt" />
+                </button>
                 <div class="copy">
-                  <h3 data-i18n="consoleH">格式化、执行、看计划</h3>
-                  <p data-i18n="consoleP">
-                    Cmd+Enter / Ctrl+Enter 执行。Alt+Shift+F 格式化。Cmd+Shift+E 打开 EXPLAIN 树。查询历史可搜索、可重跑。结果导出 CSV、JSON、Markdown、SQL INSERT。
-                  </p>
+                  <p class="capture-kicker" data-i18n="realCapture">REAL CLIENT CAPTURE</p>
+                  <h3 data-i18n="gridH">大表也保持清晰、跟手</h3>
+                  <p data-i18n="gridP">分页浏览、原位编辑和 CSV / JSON / Markdown / SQL 导出都在同一张表上完成。变更进入 changeset，确认后才写回数据库。</p>
                 </div>
               </div>
             </div>
 
-            <div class="panel" id="panel-grid" role="tabpanel" aria-labelledby="tab-grid" hidden>
-              <div class="split">
-                <table class="grid">
-                  <thead>
-                    <tr><th>id</th><th>email</th><th>plan</th><th>created_at</th></tr>
-                  </thead>
-                  <tbody>
-                    <tr><td>1042</td><td>ada@harbor.dev</td><td class="dirty">pro</td><td>2026-09-01</td></tr>
-                    <tr class="strike"><td>1043</td><td>lin@harbor.dev</td><td>free</td><td>2026-09-04</td></tr>
-                    <tr class="insert"><td>·</td><td>new@harbor.dev</td><td>pro</td><td>2026-09-20</td></tr>
-                  </tbody>
-                </table>
+            <div class="panel" id="panel-console" role="tabpanel" aria-labelledby="tab-console" hidden>
+              <div class="shot-layout">
+                <button class="shot-frame" type="button" data-lightbox="assets/screenshots/zqlcrab-sql.jpg" data-caption-key="sqlCaption" aria-label="放大查看 SQL 控制台截图" data-i18n-aria="zoomSql">
+                  <img src="assets/screenshots/zqlcrab-sql.jpg" alt="zqlcrab SQL 控制台完整窗口" width="1152" height="768" loading="lazy" data-i18n-alt="sqlAlt" />
+                </button>
                 <div class="copy">
-                  <h3 data-i18n="gridH">改格子，先审再写库</h3>
-                  <p data-i18n="gridP">
-                    双击编辑。插入空行或克隆一行。删除带删除线。所有 INSERT / UPDATE / DELETE 先收进 changeset，生成一段事务 SQL，确认后才提交。
-                  </p>
+                  <p class="capture-kicker" data-i18n="realCapture">REAL CLIENT CAPTURE</p>
+                  <h3 data-i18n="consoleH">写 SQL，也读得懂结果</h3>
+                  <p data-i18n="consoleP">格式化、执行、Explain 和结果浏览在同一工作区。查询结果可继续编辑、分页和导出，不需要在窗口之间来回切换。</p>
                 </div>
               </div>
             </div>
 
             <div class="panel" id="panel-schema" role="tabpanel" aria-labelledby="tab-schema" hidden>
-              <div class="split">
-                <table class="grid schema">
-                  <thead>
-                    <tr><th>column</th><th>type</th><th>null</th><th>key</th></tr>
-                  </thead>
-                  <tbody>
-                    <tr><td>id</td><td>bigint</td><td>NO</td><td>PK</td></tr>
-                    <tr><td>email</td><td>text</td><td>NO</td><td>UQ</td></tr>
-                    <tr><td>plan</td><td>text</td><td>NO</td><td></td></tr>
-                    <tr><td>created_at</td><td>timestamptz</td><td>NO</td><td></td></tr>
-                  </tbody>
-                </table>
+              <div class="shot-layout">
+                <button class="shot-frame" type="button" data-lightbox="assets/screenshots/zqlcrab-schema.jpg" data-caption-key="schemaCaption" aria-label="放大查看表结构截图" data-i18n-aria="zoomSchema">
+                  <img src="assets/screenshots/zqlcrab-schema.jpg" alt="zqlcrab 表结构完整窗口" width="1152" height="768" loading="lazy" data-i18n-alt="schemaAlt" />
+                </button>
                 <div class="copy">
-                  <h3 data-i18n="schemaH">建表时就能看到方言 DDL</h3>
-                  <p data-i18n="schemaP">
-                    可视化加列、主键、自增、默认值、注释。索引设计器支持多列唯一/普通索引。可以直接执行，或把 DDL 丢进控制台再改。
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="panel" id="panel-history" role="tabpanel" aria-labelledby="tab-history" hidden>
-              <div class="split">
-                <ul class="history">
-                  <li><time>12:04</time><code>SELECT count(*) FROM orders</code></li>
-                  <li><time>11:51</time><code>UPDATE users SET plan = 'pro' WHERE id = 1042</code></li>
-                  <li><time>11:40</time><code>EXPLAIN ANALYZE SELECT * FROM orders</code></li>
-                </ul>
-                <div class="copy">
-                  <h3 data-i18n="histH">会话还在</h3>
-                  <p data-i18n="histP">
-                    连接写在本机配置里。上次打开的库会在下次启动时接上。延迟 ping、测试连接、切库都在标题栏完成。
-                  </p>
+                  <p class="capture-kicker" data-i18n="realCapture">REAL CLIENT CAPTURE</p>
+                  <h3 data-i18n="schemaH">类型、约束、索引一眼看清</h3>
+                  <p data-i18n="schemaP">从列类型、空值、主键和默认值，到多列索引与方言 DDL，结构设计与真实数据库保持在同一个上下文里。</p>
                 </div>
               </div>
             </div>
@@ -293,6 +246,14 @@
         <span data-i18n="footer">宿主 alcheme.top · 源码在 GitHub · MIT OR Apache-2.0</span>
       </p>
     </footer>
+
+    <dialog class="lightbox" id="screenshot-dialog">
+      <form method="dialog">
+        <button class="lightbox-close" type="submit" aria-label="关闭" data-i18n-aria="close">×</button>
+      </form>
+      <img id="lightbox-image" src="" alt="" />
+      <p id="lightbox-caption"></p>
+    </dialog>
 
     <script src="app.js"></script>
   </body>

@@ -1,6 +1,6 @@
 ---
 name: HarborWorkbench
-description: Public portal for zqlcrab — night-harbor stage, electric-ocean interaction, steel crab mark.
+description: Public portal for zqlcrab — night-harbor stage, electric-ocean interaction, steel crab mark, real client captures.
 colors:
   primary: "oklch(0.50 0.12 230)"
   primary-hover: "oklch(0.44 0.11 230)"
@@ -106,7 +106,7 @@ components:
 # Harbor Workbench
 
 ## Overview
-The portal is a night harbor: a pure-black stage, a steel crab on a database barrel, and one electric-ocean beacon. The product window sits on the waterline as a slate GPUI workbench — not a card grid. Identity is inherited from CrabStudio (obsidian + `#0369A1` ocean) but the marketing surface is committed, not a desktop-theme dump.
+The portal is a night harbor: a pure-black stage, a steel crab on a database barrel, and one electric-ocean beacon. A complete, real GPUI client window sits on the waterline — not a card grid or a browser-built imitation. Identity is inherited from CrabStudio (obsidian + `#0369A1` ocean) but the marketing surface is committed, not a desktop-theme dump.
 
 ## Colors
 - **Neutral (`oklch(0.09 0 0)`):** Pure near-black stage. Mood lives in ocean and the crab, not in a tinted page wash.
@@ -121,19 +121,20 @@ The portal is a night harbor: a pure-black stage, a steel crab on a database bar
 - **JetBrains Mono** for SQL, matching the desktop client.
 
 ## Layout
-Left-aligned harbor: mark and headline dock on the left; the workbench window occupies the right. A 1px ocean waterline runs full bleed under the hero. Body measure ≤ 68ch. Download rows are a compact table, not equal cards.
+Left-aligned harbor: mark and headline dock on the left; the real client capture occupies the right. A 1px ocean waterline runs full bleed under the hero. Body measure ≤ 68ch. The workbench tour uses one large capture plus supporting copy, with tabs for Data, SQL, and Schema. Download rows are a compact table, not equal cards.
 
 ## Elevation & Depth
-No drop-shadow kit. Depth comes from the black stage versus the slate app chrome, plus a hairline border `oklch(0.32 0.02 240)`.
+No drop-shadow kit. Depth comes from the black stage versus the slate app capture, plus a hairline border `oklch(0.32 0.02 240)` and a restrained modal backdrop for full-size viewing.
 
 ## Shapes
 8–12px radii on the window and buttons — GPUI-adjacent, not pills except status dots.
 
 ## Components
-Primary button is ocean with white label. Ghost button is a hairline on black. The product tour is one window with tabs (Console, Grid, Schema, History), not four feature cards.
+Primary button is ocean with white label. Ghost button is a hairline on black. The product tour is one tabbed capture stage (Data, SQL, Schema), not feature cards. Clicking a capture opens the original in an accessible native dialog.
 
 ## Do's and Don'ts
 - Do keep the crab logo intact on black.
+- Do show the complete client window so navigation, connection context, and the active work surface remain understandable.
 - Do send Downloads and Source to GitHub.
 - Don't use Inter, cream paper, gradient text, or numbered 01/02/03 section eyebrows.
-- Don't invent screenshots with unreadable UI text — the workbench is HTML.
+- Don't recreate the client in HTML when a real, readable capture is available.
