@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>zqlcrab — GPU 原生数据库客户端</title>
+    <meta
+      name="description"
+      content="zqlcrab 是用 Rust 与 GPUI 打造的 GPU 加速数据库桌面客户端。连接 SQLite、PostgreSQL、MySQL，无 Electron、无 Webview。"
+    />
+    <link rel="canonical" href="https://alcheme.top/" />
+    <meta property="og:title" content="zqlcrab — GPU 原生数据库客户端" />
+    <meta
+      property="og:description"
+      content="Rust + GPUI。120 FPS。SQLite / PostgreSQL / MySQL。"
+    />
+    <meta property="og:url" content="https://alcheme.top/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://alcheme.top/assets/logo.png" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <link rel="icon" href="assets/favicon-32.png" type="image/png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip" href="#main" data-i18n="skip">跳到正文</a>
+
+    <header class="nav">
+      <a class="brand" href="#top">
+        <img src="assets/logo.png" alt="" width="36" height="36" />
+        <span>zqlcrab</span>
+      </a>
+      <nav aria-label="Primary">
+        <a href="#workbench" data-i18n="navWorkbench">工作台</a>
+        <a href="#download" data-i18n="navDownload">下载</a>
+        <a href="https://github.com/hyzwhu/zqlcrab" rel="noopener noreferrer">GitHub</a>
+        <button type="button" class="lang" id="lang-toggle" aria-pressed="false">
+          EN
+        </button>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top">
+        <div class="hero-copy">
+          <p class="mark">
+            <img src="assets/logo.png" alt="zqlcrab crab-and-barrel mark" width="88" height="88" />
+          </p>
+          <h1 data-i18n="heroTitle">GPU 原生的数据库工作台</h1>
+          <p class="lede" data-i18n="heroLede">
+            zqlcrab 用 Rust 和 Zed 的 GPUI 渲染，而不是 Electron 套一层网页。启动快、输入跟手、内存占用小。给要直接碰 SQLite、PostgreSQL、MySQL 的开发者和 DBA。
+          </p>
+          <div class="cta-row">
+            <a class="btn primary" href="https://github.com/hyzwhu/zqlcrab/releases" rel="noopener noreferrer" data-i18n="ctaDownload">打开 Releases 下载</a>
+            <a class="btn ghost" href="https://github.com/hyzwhu/zqlcrab" rel="noopener noreferrer" data-i18n="ctaSource">查看源码</a>
+          </div>
+          <p class="meta">
+            MIT OR Apache-2.0
+            ·
+            <span data-i18n="metaStack">Rust 2024 · GPUI · macOS / Linux / Windows</span>
+          </p>
+        </div>
+
+        <aside class="hero-stage" aria-hidden="true">
+          <div class="window">
+            <div class="titlebar">
+              <span class="dots"></span>
+              <span class="title">zqlcrab — local / public</span>
+              <span class="ping">12 ms</span>
+            </div>
+            <div class="window-body">
+              <div class="sidebar">
+                <p class="side-label">connections</p>
+                <p class="side-item on">▸ postgres://local</p>
+                <p class="side-item">sqlite:///notes.db</p>
+                <p class="side-label">tables</p>
+                <p class="side-item">users</p>
+                <p class="side-item">orders</p>
+                <p class="side-item">sessions</p>
+              </div>
+              <div class="console">
+                <pre><code><span class="kw">SELECT</span> u.id, u.email, <span class="fn">COUNT</span>(o.id) <span class="kw">AS</span> orders
+<span class="kw">FROM</span> users u
+<span class="kw">LEFT JOIN</span> orders o <span class="kw">ON</span> o.user_id = u.id
+<span class="kw">WHERE</span> u.created_at &gt; <span class="fn">now</span>() - <span class="str">interval '7 days'</span>
+<span class="kw">GROUP BY</span> u.id
+<span class="kw">ORDER BY</span> orders <span class="kw">DESC</span>
+<span class="kw">LIMIT</span> <span class="num">50</span>;<span class="caret"></span></code></pre>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <div class="waterline" aria-hidden="true"></div>
+
+      <section class="engines" aria-label="Supported engines">
+        <p data-i18n="enginesLead">同一套适配器，三种引擎。</p>
+        <ul>
+          <li><strong>SQLite</strong> <span data-i18n="engSqlite">WAL、内存库、本地文件</span></li>
+          <li><strong>PostgreSQL</strong> <span data-i18n="engPg">异步驱动、TLS、Schema</span></li>
+          <li><strong>MySQL</strong> <span data-i18n="engMy">5.7 / 8.x，事务与类型映射</span></li>
+        </ul>
+      </section>
+
+      <section class="workbench" id="workbench">
+        <header class="section-head">
+          <h2 data-i18n="wbTitle">一次会话里做完的事</h2>
+          <p data-i18n="wbLede">
+            不是功能清单。下面这扇窗口就是客户端：连库、写 SQL、改格子、看表结构、提交前先审 changeset。
+          </p>
+        </header>
+
+        <div class="tour">
+          <div class="tour-tabs" role="tablist" aria-label="Workbench panels">
+            <button type="button" role="tab" id="tab-console" aria-controls="panel-console" aria-selected="true" data-panel="console" data-i18n="tabConsole">SQL 控制台</button>
+            <button type="button" role="tab" id="tab-grid" aria-controls="panel-grid" aria-selected="false" data-panel="grid" data-i18n="tabGrid">数据表格</button>
+            <button type="button" role="tab" id="tab-schema" aria-controls="panel-schema" aria-selected="false" data-panel="schema" data-i18n="tabSchema">表结构</button>
+            <button type="button" role="tab" id="tab-history" aria-controls="panel-history" aria-selected="false" data-panel="history" data-i18n="tabHistory">查询历史</button>
+          </div>
+
+          <div class="tour-stage window">
+            <div class="titlebar">
+              <span class="dots"></span>
+              <span class="title" id="tour-title">console · postgres://local</span>
+              <span class="ping" data-i18n="safeMode">只读保护可开</span>
+            </div>
+
+            <div class="panel on" id="panel-console" role="tabpanel" aria-labelledby="tab-console">
+              <div class="split">
+                <pre class="sql"><code><span class="kw">EXPLAIN</span> <span class="kw">ANALYZE</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> orders
+<span class="kw">WHERE</span> status = <span class="str">'open'</span>
+<span class="kw">ORDER BY</span> created_at <span class="kw">DESC</span>;</code></pre>
+                <div class="copy">
+                  <h3 data-i18n="consoleH">格式化、执行、看计划</h3>
+                  <p data-i18n="consoleP">
+                    Cmd+Enter / Ctrl+Enter 执行。Alt+Shift+F 格式化。Cmd+Shift+E 打开 EXPLAIN 树。查询历史可搜索、可重跑。结果导出 CSV、JSON、Markdown、SQL INSERT。
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel" id="panel-grid" role="tabpanel" aria-labelledby="tab-grid" hidden>
+              <div class="split">
+                <table class="grid">
+                  <thead>
+                    <tr><th>id</th><th>email</th><th>plan</th><th>created_at</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>1042</td><td>ada@harbor.dev</td><td class="dirty">pro</td><td>2026-09-01</td></tr>
+                    <tr class="strike"><td>1043</td><td>lin@harbor.dev</td><td>free</td><td>2026-09-04</td></tr>
+                    <tr class="insert"><td>·</td><td>new@harbor.dev</td><td>pro</td><td>2026-09-20</td></tr>
+                  </tbody>
+                </table>
+                <div class="copy">
+                  <h3 data-i18n="gridH">改格子，先审再写库</h3>
+                  <p data-i18n="gridP">
+                    双击编辑。插入空行或克隆一行。删除带删除线。所有 INSERT / UPDATE / DELETE 先收进 changeset，生成一段事务 SQL，确认后才提交。
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel" id="panel-schema" role="tabpanel" aria-labelledby="tab-schema" hidden>
+              <div class="split">
+                <table class="grid schema">
+                  <thead>
+                    <tr><th>column</th><th>type</th><th>null</th><th>key</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>id</td><td>bigint</td><td>NO</td><td>PK</td></tr>
+                    <tr><td>email</td><td>text</td><td>NO</td><td>UQ</td></tr>
+                    <tr><td>plan</td><td>text</td><td>NO</td><td></td></tr>
+                    <tr><td>created_at</td><td>timestamptz</td><td>NO</td><td></td></tr>
+                  </tbody>
+                </table>
+                <div class="copy">
+                  <h3 data-i18n="schemaH">建表时就能看到方言 DDL</h3>
+                  <p data-i18n="schemaP">
+                    可视化加列、主键、自增、默认值、注释。索引设计器支持多列唯一/普通索引。可以直接执行，或把 DDL 丢进控制台再改。
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel" id="panel-history" role="tabpanel" aria-labelledby="tab-history" hidden>
+              <div class="split">
+                <ul class="history">
+                  <li><time>12:04</time><code>SELECT count(*) FROM orders</code></li>
+                  <li><time>11:51</time><code>UPDATE users SET plan = 'pro' WHERE id = 1042</code></li>
+                  <li><time>11:40</time><code>EXPLAIN ANALYZE SELECT * FROM orders</code></li>
+                </ul>
+                <div class="copy">
+                  <h3 data-i18n="histH">会话还在</h3>
+                  <p data-i18n="histP">
+                    连接写在本机配置里。上次打开的库会在下次启动时接上。延迟 ping、测试连接、切库都在标题栏完成。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="native">
+        <h2 data-i18n="nativeTitle">为什么不是 Electron</h2>
+        <p data-i18n="nativeP">
+          界面由 GPUI 走 GPU，目标 120 FPS，输入按亚毫秒响应。macOS 有原生菜单栏（zqlcrab / File / Edit / View / Window / Help）和完整快捷键。暗色黑曜石与亮色两套主题来自同一套 CrabStudio token。
+        </p>
+      </section>
+
+      <section class="download" id="download">
+        <h2 data-i18n="dlTitle">下载</h2>
+        <p data-i18n="dlLede">
+          预编译包在 GitHub Releases。版本号以仓库发布页为准。
+        </p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-i18n="colOs">系统</th>
+                <th data-i18n="colArch">架构</th>
+                <th data-i18n="colPkg">包</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>macOS</td>
+                <td>Apple Silicon</td>
+                <td><code>zqlcrab-aarch64-apple-darwin.dmg</code></td>
+              </tr>
+              <tr>
+                <td>macOS</td>
+                <td>Intel x86_64</td>
+                <td><code>zqlcrab-x86_64-apple-darwin.dmg</code></td>
+              </tr>
+              <tr>
+                <td>Linux</td>
+                <td>x86_64</td>
+                <td><code>zqlcrab-x86_64-unknown-linux-gnu.tar.gz</code></td>
+              </tr>
+              <tr>
+                <td>Windows</td>
+                <td>x86_64</td>
+                <td><code>zqlcrab-x86_64-pc-windows-msvc.zip</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note" data-i18n="gatekeeper">
+          macOS 未公证的开源包可能被 Gatekeeper 隔离。把应用拖进 Applications 后，在终端执行：sudo xattr -rd com.apple.quarantine /Applications/zqlcrab.app
+        </p>
+        <p>
+          <a class="btn primary" href="https://github.com/hyzwhu/zqlcrab/releases" rel="noopener noreferrer" data-i18n="ctaDownload">打开 Releases 下载</a>
+        </p>
+      </section>
+
+      <section class="source" id="source">
+        <h2 data-i18n="srcTitle">源码与仓库</h2>
+        <ul class="repos">
+          <li>
+            <a href="https://github.com/hyzwhu/zqlcrab" rel="noopener noreferrer">github.com/hyzwhu/zqlcrab</a>
+            <span data-i18n="repoApp">桌面客户端（Rust / GPUI）</span>
+          </li>
+          <li>
+            <a href="https://github.com/hyzwhu/zqlcrab/releases" rel="noopener noreferrer">github.com/hyzwhu/zqlcrab/releases</a>
+            <span data-i18n="repoRel">安装包与更新说明</span>
+          </li>
+          <li>
+            <a href="https://github.com/hyzwhu/zqlcrab-web" rel="noopener noreferrer">github.com/hyzwhu/zqlcrab-web</a>
+            <span data-i18n="repoWeb">本站源码（静态页）</span>
+          </li>
+        </ul>
+        <p class="note" data-i18n="srcNote">
+          从源码构建需要 Rust 1.85+（2024 edition）。macOS / Linux / Windows 的系统依赖写在仓库 README 里。
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        <img src="assets/logo.png" alt="" width="28" height="28" />
+        zqlcrab
+      </p>
+      <p>
+        <span data-i18n="footer">宿主 alcheme.top · 源码在 GitHub · MIT OR Apache-2.0</span>
+      </p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
