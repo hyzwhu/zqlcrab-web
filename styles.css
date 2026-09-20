@@ -260,6 +260,8 @@ a:hover {
   color: var(--ink);
   cursor: zoom-in;
   text-align: left;
+  box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.03);
+  transition: border-color 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
 }
 
 .shot-frame::after {
@@ -272,6 +274,8 @@ a:hover {
 
 .shot-frame:hover {
   border-color: var(--steel);
+  transform: translateY(-1px);
+  box-shadow: 0 20px 42px -10px rgba(0, 0, 0, 0.6), 0 0 0 1px color-mix(in oklch, var(--tide) 30%, transparent);
 }
 
 .shot-frame img {
@@ -521,28 +525,44 @@ a:hover {
 .real-tour .tour-tabs {
   margin-bottom: 0;
   padding-left: 0.75rem;
+  padding-right: 0.75rem;
   gap: 0;
   border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.real-tour .tour-tabs::-webkit-scrollbar {
+  display: none;
 }
 
 .real-tour .tour-tabs button {
   position: relative;
-  padding: 0.7rem 1rem;
+  padding: 0.75rem 1.15rem;
   border: 0;
   border-radius: 0;
+  white-space: nowrap;
+  font-size: 0.88rem;
+  color: var(--muted);
+  transition: color 0.15s ease;
+}
+
+.real-tour .tour-tabs button:hover {
+  color: var(--ink);
 }
 
 .real-tour .tour-tabs button[aria-selected="true"] {
   background: transparent;
   color: var(--ink);
+  font-weight: 600;
 }
 
 .real-tour .tour-tabs button[aria-selected="true"]::after {
   content: "";
   position: absolute;
-  right: 0.8rem;
+  right: 1.15rem;
   bottom: -1px;
-  left: 0.8rem;
+  left: 1.15rem;
   height: 2px;
   background: var(--tide);
 }
@@ -851,12 +871,13 @@ footer img {
   }
 
   .real-tour .tour-tabs {
-    padding-left: 0;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 
   .real-tour .tour-tabs button {
-    flex: 1;
-    padding-inline: 0.5rem;
+    flex: initial;
+    padding-inline: 0.75rem;
   }
 }
 

@@ -75,18 +75,18 @@
           <button
             class="shot-frame hero-shot"
             type="button"
-            data-lightbox="assets/screenshots/zqlcrab-data.jpg"
-            data-caption-key="dataCaption"
-            aria-label="放大查看数据表格截图"
-            data-i18n-aria="zoomData"
+            data-lightbox="assets/screenshots/zqlcrab-hero.jpg"
+            data-caption-key="heroCaption"
+            aria-label="放大查看工作台界面截图"
+            data-i18n-aria="zoomHero"
           >
             <img
-              src="assets/screenshots/zqlcrab-data.jpg"
-              alt="zqlcrab 数据表格完整窗口"
-              width="1152"
-              height="768"
+              src="assets/screenshots/zqlcrab-hero.jpg"
+              alt="zqlcrab SQL 工作台完整窗口"
+              width="1200"
+              height="800"
               fetchpriority="high"
-              data-i18n-alt="dataAlt"
+              data-i18n-alt="heroAlt"
             />
             <span class="zoom-hint" data-i18n="zoomHint">点击放大</span>
           </button>
@@ -117,13 +117,16 @@
             <button type="button" role="tab" id="tab-grid" aria-controls="panel-grid" aria-selected="true" data-panel="grid" data-i18n="tabGrid">数据表格</button>
             <button type="button" role="tab" id="tab-console" aria-controls="panel-console" aria-selected="false" data-panel="console" data-i18n="tabConsole">SQL 控制台</button>
             <button type="button" role="tab" id="tab-schema" aria-controls="panel-schema" aria-selected="false" data-panel="schema" data-i18n="tabSchema">表结构</button>
+            <button type="button" role="tab" id="tab-explain" aria-controls="panel-explain" aria-selected="false" data-panel="explain" data-i18n="tabExplain">执行计划</button>
+            <button type="button" role="tab" id="tab-history" aria-controls="panel-history" aria-selected="false" data-panel="history" data-i18n="tabHistory">查询历史</button>
+            <button type="button" role="tab" id="tab-connect" aria-controls="panel-connect" aria-selected="false" data-panel="connect" data-i18n="tabConnect">连接管理</button>
           </div>
 
           <div class="tour-stage">
             <div class="panel on" id="panel-grid" role="tabpanel" aria-labelledby="tab-grid">
               <div class="shot-layout">
                 <button class="shot-frame" type="button" data-lightbox="assets/screenshots/zqlcrab-data.jpg" data-caption-key="dataCaption" aria-label="放大查看数据表格截图" data-i18n-aria="zoomData">
-                  <img src="assets/screenshots/zqlcrab-data.jpg" alt="zqlcrab 数据表格完整窗口" width="1152" height="768" loading="lazy" data-i18n-alt="dataAlt" />
+                  <img src="assets/screenshots/zqlcrab-data.jpg" alt="zqlcrab 数据表格完整窗口" width="1200" height="800" loading="lazy" data-i18n-alt="dataAlt" />
                 </button>
                 <div class="copy">
                   <p class="capture-kicker" data-i18n="realCapture">REAL CLIENT CAPTURE</p>
@@ -136,7 +139,7 @@
             <div class="panel" id="panel-console" role="tabpanel" aria-labelledby="tab-console" hidden>
               <div class="shot-layout">
                 <button class="shot-frame" type="button" data-lightbox="assets/screenshots/zqlcrab-sql.jpg" data-caption-key="sqlCaption" aria-label="放大查看 SQL 控制台截图" data-i18n-aria="zoomSql">
-                  <img src="assets/screenshots/zqlcrab-sql.jpg" alt="zqlcrab SQL 控制台完整窗口" width="1152" height="768" loading="lazy" data-i18n-alt="sqlAlt" />
+                  <img src="assets/screenshots/zqlcrab-sql.jpg" alt="zqlcrab SQL 控制台完整窗口" width="1200" height="800" loading="lazy" data-i18n-alt="sqlAlt" />
                 </button>
                 <div class="copy">
                   <p class="capture-kicker" data-i18n="realCapture">REAL CLIENT CAPTURE</p>
@@ -149,12 +152,51 @@
             <div class="panel" id="panel-schema" role="tabpanel" aria-labelledby="tab-schema" hidden>
               <div class="shot-layout">
                 <button class="shot-frame" type="button" data-lightbox="assets/screenshots/zqlcrab-schema.jpg" data-caption-key="schemaCaption" aria-label="放大查看表结构截图" data-i18n-aria="zoomSchema">
-                  <img src="assets/screenshots/zqlcrab-schema.jpg" alt="zqlcrab 表结构完整窗口" width="1152" height="768" loading="lazy" data-i18n-alt="schemaAlt" />
+                  <img src="assets/screenshots/zqlcrab-schema.jpg" alt="zqlcrab 表结构完整窗口" width="1200" height="800" loading="lazy" data-i18n-alt="schemaAlt" />
                 </button>
                 <div class="copy">
                   <p class="capture-kicker" data-i18n="realCapture">REAL CLIENT CAPTURE</p>
                   <h3 data-i18n="schemaH">类型、约束、索引一眼看清</h3>
                   <p data-i18n="schemaP">从列类型、空值、主键和默认值，到多列索引与方言 DDL，结构设计与真实数据库保持在同一个上下文里。</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel" id="panel-explain" role="tabpanel" aria-labelledby="tab-explain" hidden>
+              <div class="shot-layout">
+                <button class="shot-frame" type="button" data-lightbox="assets/screenshots/zqlcrab-explain.jpg" data-caption-key="explainCaption" aria-label="放大查看执行计划截图" data-i18n-aria="zoomExplain">
+                  <img src="assets/screenshots/zqlcrab-explain.jpg" alt="zqlcrab SQL Explain 执行计划" width="1200" height="800" loading="lazy" data-i18n-alt="explainAlt" />
+                </button>
+                <div class="copy">
+                  <p class="capture-kicker" data-i18n="realCapture">REAL CLIENT CAPTURE</p>
+                  <h3 data-i18n="explainH">节点树形 Explain 分析</h3>
+                  <p data-i18n="explainP">一键查看查询计划树、预估代价与最耗时步骤，直观识别全表扫描与性能瓶颈。</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel" id="panel-history" role="tabpanel" aria-labelledby="tab-history" hidden>
+              <div class="shot-layout">
+                <button class="shot-frame" type="button" data-lightbox="assets/screenshots/zqlcrab-history.jpg" data-caption-key="historyCaption" aria-label="放大查看查询历史截图" data-i18n-aria="zoomHistory">
+                  <img src="assets/screenshots/zqlcrab-history.jpg" alt="zqlcrab 查询执行历史" width="1200" height="800" loading="lazy" data-i18n-alt="historyAlt" />
+                </button>
+                <div class="copy">
+                  <p class="capture-kicker" data-i18n="realCapture">REAL CLIENT CAPTURE</p>
+                  <h3 data-i18n="histH">完整查询执行足迹</h3>
+                  <p data-i18n="histP">状态状态码、耗时毫秒、影响行数与时间戳清晰留存，随时一键重填或重新运行。</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel" id="panel-connect" role="tabpanel" aria-labelledby="tab-connect" hidden>
+              <div class="shot-layout">
+                <button class="shot-frame" type="button" data-lightbox="assets/screenshots/zqlcrab-connection.jpg" data-caption-key="connectCaption" aria-label="放大查看连接管理截图" data-i18n-aria="zoomConnect">
+                  <img src="assets/screenshots/zqlcrab-connection.jpg" alt="zqlcrab 新建连接配置" width="1200" height="800" loading="lazy" data-i18n-alt="connectAlt" />
+                </button>
+                <div class="copy">
+                  <p class="capture-kicker" data-i18n="realCapture">REAL CLIENT CAPTURE</p>
+                  <h3 data-i18n="connectH">安全受控的连接生态</h3>
+                  <p data-i18n="connectP">内置 36 种生态引擎选项，支持一键切换生产只读保护（防止误执行 DROP/DELETE/UPDATE），配置保存在本地。</p>
                 </div>
               </div>
             </div>
