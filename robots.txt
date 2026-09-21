@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://alcheme.top/sitemap.xml
+Sitemap: https://zqlcrab.alcheme.top/sitemap.xml

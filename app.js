@@ -94,7 +94,7 @@ const COPY = {
     repoWeb: "本站源码（静态页）",
     srcNote:
       "从源码构建需要 Rust 1.85+（2024 edition）。macOS / Linux / Windows 的系统依赖写在仓库 README 里。",
-    footer: "宿主 alcheme.top · 源码在 GitHub · MIT OR Apache-2.0",
+    footer: "宿主 zqlcrab.alcheme.top · 源码在 GitHub · MIT OR Apache-2.0",
     title: "zqlcrab — GPU 原生数据库客户端",
     description:
       "zqlcrab 是用 Rust 与 GPUI 打造的 GPU 加速数据库桌面客户端。连接 SQLite、PostgreSQL、MySQL，无 Electron、无 Webview。",
@@ -194,7 +194,7 @@ const COPY = {
     repoWeb: "This site (static)",
     srcNote:
       "Building from source wants Rust 1.85+ (2024 edition). Platform packages are listed in the repository README.",
-    footer: "Hosted at alcheme.top · source on GitHub · MIT OR Apache-2.0",
+    footer: "Hosted at zqlcrab.alcheme.top · source on GitHub · MIT OR Apache-2.0",
     title: "zqlcrab — GPU-native database client",
     description:
       "zqlcrab is a GPU-accelerated database desktop client in Rust and GPUI. SQLite, PostgreSQL, MySQL. No Electron, no webview.",
