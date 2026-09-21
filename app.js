@@ -3,9 +3,9 @@ const COPY = {
     skip: "跳到正文",
     navWorkbench: "工作台",
     navDownload: "下载",
-    heroTitle: "GPU 原生的数据库工作台",
+    heroTitle: "GPU 原生数据库客户端",
     heroLede:
-      "zqlcrab 用 Rust 和 Zed 的 GPUI 渲染，而不是 Electron 套一层网页。启动快、输入跟手、内存占用小。给要直接碰 SQLite、PostgreSQL、MySQL 的开发者和 DBA。",
+      "zqlcrab 是用 Rust 和 Zed GPUI 渲染的 GPU 原生数据库客户端，不是 Electron 套一层网页。启动快、输入跟手、内存占用小，面向直接操作 SQLite、PostgreSQL 和 MySQL 的开发者与 DBA。",
     captureLabel: "完整客户端界面 · 本地数据库",
     zoomHint: "点击放大",
     realCapture: "真实客户端截图",
@@ -95,9 +95,9 @@ const COPY = {
     srcNote:
       "从源码构建需要 Rust 1.85+（2024 edition）。macOS / Linux / Windows 的系统依赖写在仓库 README 里。",
     footer: "宿主 zqlcrab.alcheme.top · 源码在 GitHub · MIT OR Apache-2.0",
-    title: "zqlcrab — GPU 原生数据库客户端",
+    title: "zqlcrab GPU 原生数据库客户端｜Rust GPUI 高性能 SQL 工作台，支持三大数据库",
     description:
-      "zqlcrab 是用 Rust 与 GPUI 打造的 GPU 加速数据库桌面客户端。连接 SQLite、PostgreSQL、MySQL，无 Electron、无 Webview。",
+      "zqlcrab 是用 Rust 与 GPUI 打造的 GPU 原生数据库客户端，支持 SQLite、PostgreSQL、MySQL。无 Electron、无 WebView，启动快、输入跟手、内存占用小。",
   },
   en: {
     skip: "Skip to content",
